@@ -66,7 +66,7 @@ namespace GasShipping.Test
         public void Test005_returnAJSONString()
         {
             CreateShipList();
-            var stringTest = TestShipFactory.GetShips();
+            var stringTest = TestShipFactory.GetShipsJSON();
             Assert.IsNotEmpty(stringTest);
         }
     }

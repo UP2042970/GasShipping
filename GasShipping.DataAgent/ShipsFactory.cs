@@ -23,7 +23,7 @@ namespace GasShipping.DataAgent
 
        
 
-        public string GetShips()
+        public string GetShipsJSON()
         {
             var opt=new JsonSerializerOptions() { WriteIndented = true };
             return JsonSerializer.Serialize<List<Ship>>(Ships, opt);
