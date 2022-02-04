@@ -15,7 +15,7 @@ namespace GasShipping.Model
         public double TotalCapacity { get; init; }
         public double CurrentCapacity { get; set; }
 
-        public Ship(int id, string name, Location location, double totalCapacity, double currentCapacity=0)
+        public Ship(int id, string name, Location location, double totalCapacity, double currentCapacity = 0)
         {
             //if (string.IsNullOrEmpty(name))
             //{
@@ -23,12 +23,12 @@ namespace GasShipping.Model
             //}
             ArgumentNullException.ThrowIfNull(id, nameof(id));
             ArgumentNullException.ThrowIfNull(name, nameof(name));
-            ArgumentNullException.ThrowIfNull(location, nameof(location));
+            //ArgumentNullException.ThrowIfNull(location, nameof(location));
             ArgumentNullException.ThrowIfNull(totalCapacity, nameof(totalCapacity));
 
             Id = id;
             Name = name;
-            Location = location; //?? throw new ArgumentNullException(nameof(location));
+            Location = location ?? new Location(0, 0); //?? throw new ArgumentNullException(nameof(location));
             TotalCapacity = totalCapacity;
             CurrentCapacity = currentCapacity;
         }
