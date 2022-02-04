@@ -13,6 +13,11 @@ public class Customers
 
     public Customers(int id, string name, Location location, int customerType, double quantity)
     {
+        ArgumentNullException.ThrowIfNull(id, nameof(id));
+        ArgumentNullException.ThrowIfNull(name, nameof(name));
+        ArgumentNullException.ThrowIfNull(location, nameof(location));
+        ArgumentNullException.ThrowIfNull(customerType, nameof(customerType));
+        ArgumentNullException.ThrowIfNull(quantity, nameof(quantity));
         Id = id;
         Name = name;
         Location = location;
