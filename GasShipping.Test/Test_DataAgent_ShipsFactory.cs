@@ -14,6 +14,18 @@ namespace GasShipping.Test
         Ship ship4;
 
         ShipsFactory TestShipFactory;
+        string myString = @"[
+  {
+    ""ID"": 99,
+    ""Name"": ""ship 99"",
+    ""Location"": {
+      ""X"": 99,
+      ""Y"": 55
+    },
+    ""Total Capacity"": 56,
+    ""Current Capacity"": 55
+  }
+]";
         [SetUp]
         public void Setup()
         {
@@ -22,6 +34,7 @@ namespace GasShipping.Test
             ship3 = new Ship(3, "ship 3", new Location(3, 3), 30, 20);
              ship4 = new Ship(4, "ship 4", new Location(4, 4), 40, 30);
             TestShipFactory = new ShipsFactory();
+       
         }
         public void CreateShipList()
         {
@@ -29,6 +42,7 @@ namespace GasShipping.Test
         }
 
         [Test]
+        
         public void Test001_addShipIsNotEmpty()
         {
             TestShipFactory.AddShip(ship1);
@@ -66,28 +80,35 @@ namespace GasShipping.Test
         public void Test005_returnAJSONString()
         {
             CreateShipList();
-            var stringTest = TestShipFactory.GetShipsJSON();
+            var stringTest = TestShipFactory.GetShipsToJSON();
             Assert.IsNotEmpty(stringTest);
         }
         [Test]
         public void Test006_checkJSONFormatString()
         {
-            var myString= @"[
-  {
-    ""ID"": 99,
-    ""Name"": ""ship 99"",
-    ""Location"": {
-      ""X"": 99,
-      ""Y"": 55
-    },
-    ""Total Capacity"": 56,
-    ""Current Capacity"": 55
-  }
-]";
+     
             var tempShip = new Ship(99,"ship 99", new Location(99, 55),56,55);
             TestShipFactory.AddShip(tempShip);
-            var outString= TestShipFactory.GetShipsJSON();
+            var outString= TestShipFactory.GetShipsToJSON();
             Assert.AreEqual(myString.Trim(), outString.Trim());
+        }
+
+        [Test]
+        public void Test007_returnShipObjectFromJSONString()
+        {
+      
+            var tempShips=TestShipFactory.GetShipsFromJSON(myString);
+            Assert.IsNotEmpty(tempShips);
+            Assert.IsTrue(tempShips.Count == 1);
+        }
+        [Test]
+        public void Test008_returnShipObjectFromJSONStringEqule()
+        {
+
+            var tempShips = TestShipFactory.GetShipsFromJSON(myString);
+            var tempShip = new Ship(99, "ship 99", new Location(99, 55), 56, 55);
+            TestShipFactory.AddShip(tempShip);
+            Assert.AreEqual(tempShips[0].Id, TestShipFactory.Ships[0].Id);
         }
     }
 }

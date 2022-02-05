@@ -1,0 +1,12 @@
+[
+  {
+    "ID": 99,
+    "Name": "ship 99",
+    "Location": {
+      "X": 99,
+      "Y": 55
+    },
+    "Total Capacity": 56,
+    "Current Capacity": 55
+  }
+]
