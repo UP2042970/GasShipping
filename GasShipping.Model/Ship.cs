@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace GasShipping.Model
 {
     public class Ship
     {
-
+        [JsonPropertyName("ID")]
         public int Id { get; init; }
         public string Name { get; init; }
         public Location Location { get; set; }
+        [JsonPropertyName("Total Capacity")]
         public double TotalCapacity { get; init; }
+        [JsonPropertyName("Current Capacity")]
         public double CurrentCapacity { get; set; }
 
         public Ship(int id, string name, Location location, double totalCapacity, double currentCapacity = 0)

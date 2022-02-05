@@ -69,5 +69,25 @@ namespace GasShipping.Test
             var stringTest = TestShipFactory.GetShipsJSON();
             Assert.IsNotEmpty(stringTest);
         }
+        [Test]
+        public void Test006_checkJSONFormatString()
+        {
+            var myString= @"[
+  {
+    ""ID"": 99,
+    ""Name"": ""ship 99"",
+    ""Location"": {
+      ""X"": 99,
+      ""Y"": 55
+    },
+    ""Total Capacity"": 56,
+    ""Current Capacity"": 55
+  }
+]";
+            var tempShip = new Ship(99,"ship 99", new Location(99, 55),56,55);
+            TestShipFactory.AddShip(tempShip);
+            var outString= TestShipFactory.GetShipsJSON();
+            Assert.AreEqual(myString.Trim(), outString.Trim());
+        }
     }
 }
