@@ -42,7 +42,7 @@ namespace GasShipping.DataAgent
             return JsonSerializer.Serialize<List<Ship>>(ships, opt);
         }
         public List<Ship> GetShipsFromJSONString(string JSONstring) => JsonSerializer.Deserialize<List<Ship>>(JSONstring);
-        public void AddShip(Ship ship) => Ships.Add(ship);
+        public void AddShip(Ship ship ) => Ships.Add(ship);
 
         public void RemoveShip(Ship ship)
         {
