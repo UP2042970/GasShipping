@@ -11,28 +11,37 @@ namespace GasShipping.DataAgent
     public class ShipsFactory
     {
         public List<Ship> Ships { get; set; }
+        private FileAgent _fileAgent; 
         public ShipsFactory(List<Ship> ships)
         {
             Ships = ships;
+            _fileAgent = new FileAgent(Constants.SHIPS_FILE_NAME, Constants.PATH);
         }
 
         public ShipsFactory()
         {
             Ships = new List<Ship>();
+            _fileAgent = new FileAgent(Constants.SHIPS_FILE_NAME, Constants.PATH);
         }
 
        
 
-        public string GetShipsToJSON()
+        public string SetShipsToJSONString()
         {
             var opt=new JsonSerializerOptions() { WriteIndented = true };
             return JsonSerializer.Serialize<List<Ship>>(Ships, opt);
         }
-        public List<Ship> GetShipsFromJSON(string JSONstring)
+        public string SetShipsToJSONString(List<Ship> ships)
         {
-            var ships = JsonSerializer.Deserialize<List<Ship>>(JSONstring);
-            return ships;
+            if (ships is null)
+            {
+                ships = Ships;
+            }
+
+            var opt = new JsonSerializerOptions() { WriteIndented = true };
+            return JsonSerializer.Serialize<List<Ship>>(ships, opt);
         }
+        public List<Ship> GetShipsFromJSONString(string JSONstring) => JsonSerializer.Deserialize<List<Ship>>(JSONstring);
         public void AddShip(Ship ship) => Ships.Add(ship);
 
         public void RemoveShip(Ship ship)
@@ -43,6 +52,13 @@ namespace GasShipping.DataAgent
             }
 
             Ships.Remove(ship);
+        }
+        public List<Ship> GetShipsFromFile()
+        {///TODO
+            var jsonString=_fileAgent.ReadFile();
+            Ships.Clear();
+            Ships.AddRange(GetShipsFromJSONString(jsonString));
+            return Ships;
         }
     }
 

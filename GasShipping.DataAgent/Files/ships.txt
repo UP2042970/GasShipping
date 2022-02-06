@@ -1,12 +1,42 @@
 [
   {
-    "ID": 99,
-    "Name": "ship 99",
+    "ID": 1,
+    "Name": "ship 1",
     "Location": {
-      "X": 99,
-      "Y": 55
+      "X": 0,
+      "Y": 0
     },
-    "Total Capacity": 56,
-    "Current Capacity": 55
+    "Total Capacity": 10,
+    "Current Capacity": 0
+  },
+  {
+    "ID": 2,
+    "Name": "ship 2",
+    "Location": {
+      "X": 2,
+      "Y": 2
+    },
+    "Total Capacity": 20,
+    "Current Capacity": 10
+  },
+  {
+    "ID": 3,
+    "Name": "ship 3",
+    "Location": {
+      "X": 3,
+      "Y": 3
+    },
+    "Total Capacity": 30,
+    "Current Capacity": 20
+  },
+  {
+    "ID": 4,
+    "Name": "ship 4",
+    "Location": {
+      "X": 4,
+      "Y": 4
+    },
+    "Total Capacity": 40,
+    "Current Capacity": 30
   }
 ]

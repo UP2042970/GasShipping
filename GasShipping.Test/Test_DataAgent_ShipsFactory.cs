@@ -31,7 +31,7 @@ namespace GasShipping.Test
         {
              ship1 = new Ship(1, "ship 1", null, 10);
              ship2 = new Ship(2, "ship 2", new Location(2, 2), 20, 10);
-            ship3 = new Ship(3, "ship 3", new Location(3, 3), 30, 20);
+             ship3 = new Ship(3, "ship 3", new Location(3, 3), 30, 20);
              ship4 = new Ship(4, "ship 4", new Location(4, 4), 40, 30);
             TestShipFactory = new ShipsFactory();
        
@@ -80,7 +80,7 @@ namespace GasShipping.Test
         public void Test005_returnAJSONString()
         {
             CreateShipList();
-            var stringTest = TestShipFactory.GetShipsToJSON();
+            var stringTest = TestShipFactory.SetShipsToJSONString();
             Assert.IsNotEmpty(stringTest);
         }
         [Test]
@@ -89,7 +89,7 @@ namespace GasShipping.Test
      
             var tempShip = new Ship(99,"ship 99", new Location(99, 55),56,55);
             TestShipFactory.AddShip(tempShip);
-            var outString= TestShipFactory.GetShipsToJSON();
+            var outString= TestShipFactory.SetShipsToJSONString();
             Assert.AreEqual(myString.Trim(), outString.Trim());
         }
 
@@ -97,7 +97,7 @@ namespace GasShipping.Test
         public void Test007_returnShipObjectFromJSONString()
         {
       
-            var tempShips=TestShipFactory.GetShipsFromJSON(myString);
+            var tempShips=TestShipFactory.GetShipsFromJSONString(myString);
             Assert.IsNotEmpty(tempShips);
             Assert.IsTrue(tempShips.Count == 1);
         }
@@ -105,7 +105,7 @@ namespace GasShipping.Test
         public void Test008_returnShipObjectFromJSONStringEqule()
         {
 
-            var tempShips = TestShipFactory.GetShipsFromJSON(myString);
+            var tempShips = TestShipFactory.GetShipsFromJSONString(myString);
             var tempShip = new Ship(99, "ship 99", new Location(99, 55), 56, 55);
             TestShipFactory.AddShip(tempShip);
             Assert.AreEqual(tempShips[0].Id, TestShipFactory.Ships[0].Id);
