@@ -40,15 +40,15 @@ namespace GasShipping.DataAgent
             return JsonSerializer.Serialize<List<Customers>>(customers, opt);
         }
         public List<Customers> GetShipsFromJSONString(string JSONstring) => JsonSerializer.Deserialize<List<Customers>>(JSONstring);
-        public void AddCustomers(Customers customers) => Customers.Add(customers);
-        public void RemoveCustomers(Customers customers)
+        public void AddCustomer(Customers customer) => Customers.Add(customer);
+        public void RemoveCustomer(Customers customer)
         {
-            if (customers is null)
+            if (customer is null)
             {
-                throw new ArgumentNullException(nameof(customers));
+                throw new ArgumentNullException(nameof(customer));
             }
 
-            Customers.Remove(customers);
+            Customers.Remove(customer);
         }
         public List<Customers> GetCustomersFromFile()
         {
