@@ -54,7 +54,7 @@ namespace GasShipping.DataAgent
             Ships.Remove(ship);
         }
         public List<Ship> GetShipsFromFile()
-        {///TODO
+        {
             var jsonString=_fileAgent.ReadFile();
             Ships.Clear();
             Ships.AddRange(GetShipsFromJSONString(jsonString));
