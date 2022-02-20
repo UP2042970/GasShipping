@@ -5,6 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
+        <DocumentationFile>C:\Users\binma\source\repos\GasShipping\Docs\GasShipping.Model.xml</DocumentationFile>
     </PropertyGroup>
 
 </Project>

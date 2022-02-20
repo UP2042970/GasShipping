@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GasShipping.Console", "GasS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GasShipping.Model", "GasShipping.Model\GasShipping.Model.csproj", "{9AE2D817-BE52-4AF2-A2E7-27108FED4B69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GasShipping.DataAgent", "GasShipping.DataAgent\GasShipping.DataAgent.csproj", "{C3DCB449-D7AB-441E-B981-EC8C6A6316B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GasShipping.DataAgent", "GasShipping.DataAgent\GasShipping.DataAgent.csproj", "{C3DCB449-D7AB-441E-B981-EC8C6A6316B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GasShipping.Test", "GasShipping.Test\GasShipping.Test.csproj", "{6DC56C3C-984D-420D-A5BF-5EC2CDE56CB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GasShipping.Test", "GasShipping.Test\GasShipping.Test.csproj", "{6DC56C3C-984D-420D-A5BF-5EC2CDE56CB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
