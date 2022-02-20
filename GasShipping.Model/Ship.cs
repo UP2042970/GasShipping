@@ -17,7 +17,14 @@ namespace GasShipping.Model
         public double TotalCapacity { get; init; }
         [JsonPropertyName("Current Capacity")]
         public double CurrentCapacity { get; set; }
-
+        /// <summary>
+        /// Constructor for Ship. Throws ArgumentNullException if param(s) are null 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="location"></param>
+        /// <param name="totalCapacity"></param>
+        /// <param name="currentCapacity"></param>
         public Ship(int id, string name, Location location, double totalCapacity, double currentCapacity = 0)
         {
             //if (string.IsNullOrEmpty(name))
