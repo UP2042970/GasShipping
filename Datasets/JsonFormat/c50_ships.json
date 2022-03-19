@@ -1,0 +1,62 @@
+[
+  {
+    "ID": 1,
+    "Name": "Ship_1",
+    "Location": {
+      "X": 30,
+      "Y": 40
+    },
+    "Total Capacity": 160,
+    "Current Capacity": 160
+  },
+  {
+    "ID": 2,
+    "Name": "Ship_2",
+    "Location": {
+      "X": 30,
+      "Y": 40
+    },
+    "Total Capacity": 160,
+    "Current Capacity": 160
+  },
+  {
+    "ID": 3,
+    "Name": "Ship_3",
+    "Location": {
+      "X": 30,
+      "Y": 40
+    },
+    "Total Capacity": 160,
+    "Current Capacity": 160
+  },
+  {
+    "ID": 4,
+    "Name": "Ship_4",
+    "Location": {
+      "X": 30,
+      "Y": 40
+    },
+    "Total Capacity": 160,
+    "Current Capacity": 160
+  },
+  {
+    "ID": 5,
+    "Name": "Ship_5",
+    "Location": {
+      "X": 30,
+      "Y": 40
+    },
+    "Total Capacity": 160,
+    "Current Capacity": 160
+  },
+  {
+    "ID": 6,
+    "Name": "Ship_6",
+    "Location": {
+      "X": 30,
+      "Y": 40
+    },
+    "Total Capacity": 160,
+    "Current Capacity": 160
+  }
+]
