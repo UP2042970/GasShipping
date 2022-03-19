@@ -4,6 +4,21 @@
         <name>GasShipping.Model</name>
     </assembly>
     <members>
+        <member name="P:GasShipping.Model.Customers.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:GasShipping.Model.Customers.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:GasShipping.Model.Customers.Location">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:GasShipping.Model.Customers.#ctor(System.Int32,System.String,GasShipping.Model.Location,System.Int32,System.Double)">
             <summary>
             Constructor for Customer. Throws ArgumentNullException if param(s) are null 

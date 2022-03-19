@@ -7,9 +7,15 @@ using System.Text.Json;
 using GasShipping.Model;
 
 namespace GasShipping.DataAgent
-{
+{/// <summary>
+///  this class is for creating a list of customers from a JSON string or create
+///  a JSON from a list of customers
+/// </summary>
     public class CustomerFactory
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public List<Customers> Customers { get; set; }
         private FileAgent _fileAgent;
 

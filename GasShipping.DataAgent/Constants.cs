@@ -5,12 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GasShipping.DataAgent
-{
+{/// <summary>
+/// This class holds all the constants for this project
+/// </summary>
     public static class Constants
     {
-        public const string CUSTOMER_FILE_NAME = "cutomers.txt";
-        public const string SHIPS_FILE_NAME = "ships.txt";
-        public const string PATH = @"C:\Users\binma\source\repos\GasShipping\GasShipping.DataAgent\Files\";// Environment.CurrentDirectory;//Directory.GetCurrentDirectory();
+        /// <summary>
+        /// costmer file name constant
+        /// </summary>
+        public const string CUSTOMER_FILE_NAME = "c50_customers.json";
+        /// <summary>
+        /// ships file name constant
+        /// </summary>
+        public const string SHIPS_FILE_NAME = "c50_ships.json";
+        /// <summary>
+        /// dirctory path  constant
+        /// </summary>
+        public const string PATH = @"C:\Users\binma\source\repos\GasShipping\Datasets\JsonFormat\";// Environment.CurrentDirectory;//Directory.GetCurrentDirectory();
 
 
         
