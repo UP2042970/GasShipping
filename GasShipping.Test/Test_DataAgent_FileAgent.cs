@@ -1,11 +1,7 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GasShipping.DataAgent;
+﻿using GasShipping.DataAgent;
 using GasShipping.Model;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace GasShipping.Test
 {
@@ -15,6 +11,8 @@ namespace GasShipping.Test
         Ship ship2;
         Ship ship3;
         Ship ship4;
+        string DEMO_FILE_NAME = "TEST.JSON";
+        string DEMO_FILE_PATH = @"C:\Users\binma\source\repos\GasShipping\GasShipping.DataAgent\Files\";
 
         ShipsFactory TestShipFactory;
         string myString = @"[
@@ -48,37 +46,37 @@ namespace GasShipping.Test
         {
             var path = Constants.PATH;
             Assert.IsNotNull(path);
-           
+
         }
         [Test]
         public void Test002_WriteStringToFile()
         {
-            var fileAgent=new FileAgent(Constants.SHIPS_FILE_NAME, Constants.PATH);
-            bool isTrue=fileAgent.WriteFile(myString);
+            var fileAgent = new FileAgent(DEMO_FILE_NAME, DEMO_FILE_PATH);
+            bool isTrue = fileAgent.WriteFile(myString);
             Assert.IsTrue(isTrue);
 
         }
         [Test]
         public void Test003_ReadStringFromFile()
         {
-            var fileAgent = new FileAgent(Constants.SHIPS_FILE_NAME, Constants.PATH);
+            var fileAgent = new FileAgent(DEMO_FILE_NAME, DEMO_FILE_PATH);
             string fromFile = fileAgent.ReadFile();
             Assert.IsNotNull(fromFile);
             Assert.AreEqual(myString, fromFile);
 
         }
-        
+
         [Test]
         public void Test004_GetListOFobjectsToFIle()
         {
             CreateShipList();
             var stringTest = TestShipFactory.SetShipsToJSONString();
-            var fileAgent = new FileAgent(Constants.SHIPS_FILE_NAME, Constants.PATH);
+            var fileAgent = new FileAgent(DEMO_FILE_NAME, DEMO_FILE_PATH);
             bool isTrue = fileAgent.WriteFile(stringTest);
-           
+
             string fromFile = fileAgent.ReadFile();
             Assert.IsTrue(isTrue);
-            Assert.AreEqual(fromFile,stringTest);
+            Assert.AreEqual(fromFile, stringTest);
 
         }
         [Test]
@@ -86,13 +84,11 @@ namespace GasShipping.Test
         {
             CreateShipList();
             var stringTest = TestShipFactory.SetShipsToJSONString();
-            var fileAgent = new FileAgent(Constants.SHIPS_FILE_NAME, Constants.PATH);
+            var fileAgent = new FileAgent(DEMO_FILE_NAME, DEMO_FILE_PATH);
             bool isTrue = fileAgent.WriteFile(stringTest);
-
             string fromFile = fileAgent.ReadFile();
             Assert.IsTrue(isTrue);
             Assert.AreEqual(fromFile, stringTest);
-
         }
     }
 }
