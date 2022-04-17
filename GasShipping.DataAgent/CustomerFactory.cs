@@ -18,23 +18,45 @@ namespace GasShipping.DataAgent
         /// </summary>
         public List<Customers> Customers { get; set; }
         private FileAgent _fileAgent;
-
+        /// <summary>
+        /// Cunstrctor for CustomerFactory
+        /// </summary>
+        /// <param name="customers">List&lt;Customers&gt;</param>
         public CustomerFactory(List<Customers> customers)
         {
             Customers = customers;
-            _fileAgent = new FileAgent(Constants.CUSTOMER_FILE_NAME, Constants.PATH);
+            _fileAgent = new FileAgent(Constants.CUSTOMER_FILE_NAME_C50, Constants.PATH);
         }
+        /// <summary>
+        /// Cunstrctor for CustomerFactory
+        /// </summary>
         public CustomerFactory()
         {
             Customers=new List<Customers>();
-            _fileAgent = new FileAgent(Constants.CUSTOMER_FILE_NAME, Constants.PATH);
+            _fileAgent = new FileAgent(Constants.CUSTOMER_FILE_NAME_C50, Constants.PATH);
         }
-
+        /// <summary>
+        /// Cunstrctor for CustomerFactory
+        /// </summary>
+        /// <param name="fileAgent">FileAgent</param>
+        public CustomerFactory(FileAgent fileAgent)
+        {
+            Customers = new List<Customers>();
+            _fileAgent = fileAgent;
+        }
+        /// <summary>
+        /// This method converts List of Customers to JSON string
+        /// </summary>
+        /// <returns>string</returns>
         public string SetCustomersToJSONString()
         {
             var opt = new JsonSerializerOptions() { WriteIndented = true };
             return JsonSerializer.Serialize<List<Customers>>(Customers, opt);
-        }
+        }/// <summary>
+         /// This method converts List of Customers to JSON string
+         /// </summary>
+         /// <param name="customers">List&lt;Customers&gt;</param>
+         /// <returns></returns>
         public string SetCustomersToJSONString(List<Customers> customers)
         {
             if (customers is null)
@@ -45,8 +67,22 @@ namespace GasShipping.DataAgent
             var opt = new JsonSerializerOptions() { WriteIndented = true };
             return JsonSerializer.Serialize<List<Customers>>(customers, opt);
         }
+        /// <summary>
+        /// This method converts JSON string to List of Customers 
+        /// </summary>
+        /// <param name="JSONstring">string</param>
+        /// <returns>List&lt;Customers&gt;</returns>
         public List<Customers> GetShipsFromJSONString(string JSONstring) => JsonSerializer.Deserialize<List<Customers>>(JSONstring);
+        /// <summary>
+        /// This method will add a customer to the List&lt;Customers&gt;
+        /// </summary>
+        /// <param name="customer">Customers</param>
         public void AddCustomer(Customers customer) => Customers.Add(customer);
+        /// <summary>
+        /// This method will remove the customer from the List&lt;Customers&gt;
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <exception cref="ArgumentNullException"></exception>
         public void RemoveCustomer(Customers customer)
         {
             if (customer is null)
@@ -56,6 +92,10 @@ namespace GasShipping.DataAgent
 
             Customers.Remove(customer);
         }
+        /// <summary>
+        ///  This method will read a JSON file then will convert it to list of Customers
+        /// </summary>
+        /// <returns>List&lt;Customers&gt;</returns>
         public List<Customers> GetCustomersFromFile()
         {
             var jsonString = _fileAgent.ReadFile();
