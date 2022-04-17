@@ -6,28 +6,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/// <summary>
-/// This willl be the main class that will be runnig
-/// the Demo
-/// </summary>
-    public static class Helper
+/// <summary>This will be the main class that will be running
+/// the Demo</summary>
+public static class Helper
     {
-   
+
+    /// <summary>Gets or sets the ships.</summary>
+    /// <value>The ships.</value>
     public static List<Ship>? Ships { get; set; }
-    /// <summary>
-    /// list of Customers objects
-    /// </summary>
+
+    /// <summary>Gets or sets the ports.</summary>
+    /// <value>The ports.</value>
     public static List <Customers>? Ports { get; set; }
-    /// <summary>
-    /// FileAgent object
-    /// </summary>
+
+    /// <summary>Gets or sets the file agent.</summary>
+    /// <value>The file agent.</value>
     public static FileAgent? FileAgent { get; set; }
 
 
 
-    /// <summary>
-    /// This is the main method that will run the whole program
-    /// </summary>
+    /// <summary>This is the main method that will run the whole program</summary>
     public static void Run()
     {
         //TODO: call (METHOD)  ask user for file options then populate depending on the option

@@ -5,17 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GasShipping.DataAgent
-{/// <summary>
-/// This class will be used to read/write to files
-/// </summary>
+{
+    /// <summary>This class will be used to read/write to files</summary>
     public class FileAgent
     {
-        /// <summary>
-        /// Public constructor for the FileAgent class
-        /// </summary>
-        /// <param name="fileName">string</param>
-        /// <param name="directoryName">string</param>
-        /// <exception cref="ArgumentException"></exception>
+
+        /// <summary>Initializes a new instance of the <see cref="FileAgent" /> class.</summary>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="directoryName">Name of the directory.</param>
+        /// <exception cref="System.ArgumentException">'{nameof(fileName)}' cannot be null or empty. - fileName</exception>
         public FileAgent(string fileName, string directoryName)
         {
             if (string.IsNullOrEmpty(fileName))
@@ -32,17 +30,15 @@ namespace GasShipping.DataAgent
             FileName = fileName;
             DirectoryName = directoryName;
         }
-        /// <summary>
-        ///  <value>Property <c>FileName</c> string of the file name.</value>
-        /// </summary>
+
+        /// <summary>Gets or sets the name of the file.</summary>
+        /// <value>The name of the file.</value>
         public string FileName { get; set; }
-        /// <summary>
-        /// <value>Property <c>DirectoryName</c> string of the path to the file.</value>
-        /// </summary>
+
+        /// <summary>Gets or sets the name of the directory.</summary>
+        /// <value>The name of the directory.</value>
         public string DirectoryName { get; set; }
-        /// <summary>
-        /// This method reads file and returns a string for the whole file
-        /// </summary>
+        /// <summary>This method reads file and returns a string for the whole file</summary>
         /// <returns>string</returns>
         public string ReadFile()
         {
@@ -54,9 +50,7 @@ namespace GasShipping.DataAgent
             }
             return output;
         }
-        /// <summary>
-        /// This method writes a string to a file
-        /// </summary>
+        /// <summary>This method writes a string to a file</summary>
         /// <param name="input"></param>
         /// <returns>bool</returns>
         public bool WriteFile(string input)
