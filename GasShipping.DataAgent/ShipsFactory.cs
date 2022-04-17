@@ -29,7 +29,7 @@ namespace GasShipping.DataAgent
         public ShipsFactory(List<Ship> ships)
         {
             Ships = ships;
-            _fileAgent = new FileAgent(Constants.SHIPS_FILE_NAME, Constants.PATH);
+            _fileAgent = new FileAgent(Constants.SHIPS_FILE_NAME_C50, Constants.PATH);
         }
         /// <summary>
         /// Cunstrctor for ShipsFactory 
@@ -37,7 +37,7 @@ namespace GasShipping.DataAgent
         public ShipsFactory()
         {
             Ships = new List<Ship>();
-            _fileAgent = new FileAgent(Constants.SHIPS_FILE_NAME, Constants.PATH);
+            _fileAgent = new FileAgent(Constants.SHIPS_FILE_NAME_C50, Constants.PATH);
         }
         /// <summary>
         /// Cunstrctor for ShipsFactory 

@@ -33,11 +33,14 @@ using System.Threading.Tasks;
         //TODO: call (METHOD)  ask user for file options then populate depending on the option
         // we will use the constant files for now
 
-        FileAgent = new (Constants.SHIPS_FILE_NAME, Constants.PATH);
+        FileAgent = new (Constants.SHIPS_FILE_NAME_C50, Constants.PATH);
         var shipFactory=new ShipsFactory(FileAgent);
         Ships= shipFactory.GetShipsFromFile();
-        Console.WriteLine(shipFactory.SetShipsToJSONString(Ships));
-
+        //Console.WriteLine(shipFactory.SetShipsToJSONString(Ships));
+        FileAgent.FileName = Constants.CUSTOMER_FILE_NAME_C50;
+        var customerFactory=new CustomerFactory(FileAgent);
+        Ports=customerFactory.GetCustomersFromFile();
+        Console.WriteLine(customerFactory.SetCustomersToJSONString((Ports)));
 
     }
 

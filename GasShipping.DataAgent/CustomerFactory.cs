@@ -25,7 +25,7 @@ namespace GasShipping.DataAgent
         public CustomerFactory(List<Customers> customers)
         {
             Customers = customers;
-            _fileAgent = new FileAgent(Constants.CUSTOMER_FILE_NAME, Constants.PATH);
+            _fileAgent = new FileAgent(Constants.CUSTOMER_FILE_NAME_C50, Constants.PATH);
         }
         /// <summary>
         /// Cunstrctor for CustomerFactory
@@ -33,7 +33,7 @@ namespace GasShipping.DataAgent
         public CustomerFactory()
         {
             Customers=new List<Customers>();
-            _fileAgent = new FileAgent(Constants.CUSTOMER_FILE_NAME, Constants.PATH);
+            _fileAgent = new FileAgent(Constants.CUSTOMER_FILE_NAME_C50, Constants.PATH);
         }
         /// <summary>
         /// Cunstrctor for CustomerFactory
