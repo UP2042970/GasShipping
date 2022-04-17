@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GasShipping.DataAgent", "Ga
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GasShipping.Test", "GasShipping.Test\GasShipping.Test.csproj", "{6DC56C3C-984D-420D-A5BF-5EC2CDE56CB2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GasShipping.FleetRoutingModel", "GasShipping.FleetRoutingModel\GasShipping.FleetRoutingModel.csproj", "{8C3730DE-84E3-4C79-BC5C-69C0BBE872C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{6DC56C3C-984D-420D-A5BF-5EC2CDE56CB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DC56C3C-984D-420D-A5BF-5EC2CDE56CB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DC56C3C-984D-420D-A5BF-5EC2CDE56CB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C3730DE-84E3-4C79-BC5C-69C0BBE872C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C3730DE-84E3-4C79-BC5C-69C0BBE872C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C3730DE-84E3-4C79-BC5C-69C0BBE872C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C3730DE-84E3-4C79-BC5C-69C0BBE872C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
