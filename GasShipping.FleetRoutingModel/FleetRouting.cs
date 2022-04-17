@@ -11,6 +11,9 @@ namespace GasShipping.FleetRoutingModel
     /// <summary>This class will have the routing math and calculation done here</summary>
     public class FleetRouting
     {
+        /// <summary>Gets or sets the solution.</summary>
+        /// <value>The solution.</value>
+        Assignment Solution { get; set; }
         /// <summary>Euclidean distance implemented as a callback. It uses an array of
         /// positions and computes the Euclidean distance between the two
         /// positions of two different indices.</summary>
@@ -99,7 +102,7 @@ namespace GasShipping.FleetRoutingModel
 
             // Solve the problem.
             // [START solve]
-            Assignment solution = routing.SolveWithParameters(searchParameters);
+            Solution = routing.SolveWithParameters(searchParameters);
             // [END solve]
         }
     }
