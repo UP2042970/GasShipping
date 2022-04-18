@@ -56,12 +56,18 @@ public static class Helper
         loads.Add(0);//Home load requirements
         loads.AddRange(Ports.Select(p => (int)p.Quantity));
 
-        var loadsArray= loads.ConvertAll(p=>Convert.ToInt64(p)).ToArray();// convert to array
+       // Ships.RemoveAt(0);
+        var loadsArray = loads.ConvertAll(p => Convert.ToInt64(p)).ToArray();// convert to array
+        var ShipCpacitys = Ships.Select(p => Convert.ToInt64(p.CurrentCapacity)).ToArray();// convert to array
+        //Ships.Count
+        
 
-        //TODO: Ships capacity then do the fleet.
-       //Fleet =new Fleet(loadsArray,)
+        Fleet = new Fleet(loadsArray, ShipCpacitys, Ships.Count, 0, locationArray);
+        FleetRouting fleetRouting = new FleetRouting();
+        fleetRouting.Setup(Fleet,false);
+        fleetRouting.PrintSolution(Fleet, fleetRouting.Routing, fleetRouting.Manager, fleetRouting.Solution);
 
-       
+
 
     }
 

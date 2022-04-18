@@ -8,13 +8,13 @@ namespace GasShipping.FleetRoutingModel
     {
         /// <summary>Gets or sets the solution.</summary>
         /// <value>The solution.</value>
-        Assignment Solution { get; set; }
+        public Assignment Solution { get; set; }
         /// <summary>Gets or sets the manager.</summary>
         /// <value>The manager.</value>
-        RoutingIndexManager Manager { get; set; }
+        public RoutingIndexManager Manager { get; set; }
         /// <summary>Gets or sets the routing.</summary>
         /// <value>The routing.</value>
-        RoutingModel Routing { get; set; }
+        public RoutingModel Routing { get; set; }
         /// <summary>Euclidean distance implemented as a callback. It uses an array of
         /// positions and computes the Euclidean distance between the two
         /// positions of two different indices.</summary>
@@ -129,39 +129,83 @@ namespace GasShipping.FleetRoutingModel
         /// <param name="routing">The routing.</param>
         /// <param name="manager">The manager.</param>
         /// <param name="solution">The solution.</param>
-        public static void PrintSolution(in Fleet data, in RoutingModel routing, in RoutingIndexManager manager,
-                            in Assignment solution)
+        public void PrintSolution(in Fleet data, in RoutingModel routing, in RoutingIndexManager manager,
+                          in Assignment solution)
         {
-            Console.WriteLine($"Objective {solution.ObjectiveValue()}:");
+            var space = "                                        ";
+            string print= CreateSolutionString(data, routing, manager, solution,"TODO","\n"+space+"L");
+            Console.WriteLine(print);
+
+        }
+       //TODO Comments
+        private string CreateSolutionString(in Fleet data, in RoutingModel routing, in RoutingIndexManager manager,
+                      in Assignment solution, string descreiption = "",string seperator="->")
+        {
+            String result = descreiption+"\n\n";
 
             // Inspect solution.
             long totalDistance = 0;
             long totalLoad = 0;
+            int totalStops = 0;
+            int overallStops = 0;
+            string space = "|-";
+            
             for (int i = 0; i < data.ShipCount; ++i)
             {
-                Console.WriteLine("Route for Vehicle {0}:", i + 1);
+                result += String.Format("Route for Ship {0}:", i + 1) + "\n";
+                //Console.WriteLine;
                 long routeDistance = 0;
+                totalStops = 0;
                 //long routeLoad = 0;
                 long routeLoad = data.ShipCapacities[i];
                 var index = routing.Start(i);
                 while (routing.IsEnd(index) == false)
                 {
+                 
                     long nodeIndex = manager.IndexToNode(index);
                     // routeLoad += data.Demands[nodeIndex];
                     routeLoad -= data.Demands[nodeIndex];
                     //Console.Write("{0} Load({1}) -> ", nodeIndex, routeLoad);
-                    Console.Write("{0} {1} Load({2}) -> ", data.Demands[nodeIndex] == 0 ? "Start" : "demand(" + data.Demands[nodeIndex] + ")", nodeIndex == 0 ? "Depo" : "Customer" + nodeIndex, routeLoad);
+                    string arg0 = data.Demands[nodeIndex] == 0 ? "" : String.Format("where the demand is: {0,-3:000}", data.Demands[nodeIndex]);
+                    string arg1 = nodeIndex == 0 ? "At Home" : String.Format("Customer{1,-3:000}", space, nodeIndex);
+                    string arg2 = nodeIndex == 0 ? routeLoad + "" : String.Format("{0,-4:000}", routeLoad ) + " after offloading "+seperator;
+                    result += FormatRouteString(arg0, arg1, arg2, space);
+                   // var test = string.Format("{3}The Ship load is {2}  {1}  demand is: 021", arg0, arg1, arg2,space);
                     var previousIndex = index;
                     index = solution.Value(routing.NextVar(index));
                     routeDistance += routing.GetArcCostForVehicle(previousIndex, index, 0);
+                    totalStops += nodeIndex == 0 ? 0 : 1;
+
                 }
-                Console.WriteLine("{0}", manager.IndexToNode((int)index));
-                Console.WriteLine("Distance of the route: {0}m", routeDistance);
+                
+              result += String.Format("Distance of the route: {0}m with total {1} stops", routeDistance,totalStops) + "\n";
+                overallStops += totalStops;
+                result += "\n";
                 totalDistance += routeDistance;
                 totalLoad += routeLoad;
             }
-            Console.WriteLine("Total distance of all routes: {0}m", totalDistance);
-            Console.WriteLine("Total load of all routes: {0}m", totalLoad);
+            result += String.Format("Total distance of all routes: {0}m", totalDistance) + "\n";
+            result += String.Format("Total load of all routes: {0}", data.Demands.Sum()) + "\n";
+            result += String.Format("Total stops of all routes: {0}", overallStops) + "\n";
+            return result;
+
         }
+
+        /// <summary>Formats the route string.</summary>
+        /// <param name="arg0">The arg0.</param>
+        /// <param name="arg1">The arg1.</param>
+        /// <param name="arg2">The arg2.</param>
+        /// <param name="space">The space.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        /// TODO Edit XML Comment Template for FormatRouteString
+        private static string FormatRouteString(string arg0, string arg1, string arg2, string space)
+        {
+            //string space = "|-";
+
+            return String.Format("{3} The Ship load is {2} {1} {0}", arg0, arg1, arg2, space) + "\n";
+        }
+
     }
 }

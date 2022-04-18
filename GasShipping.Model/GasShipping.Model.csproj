@@ -4,8 +4,8 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <GenerateDocumentationFile>True</GenerateDocumentationFile>
-        <DocumentationFile>C:\Users\binma\source\repos\GasShipping\Docs\GasShipping.Model.xml</DocumentationFile>
+        <GenerateDocumentationFile>False</GenerateDocumentationFile>
+        <DocumentationFile></DocumentationFile>
     </PropertyGroup>
 
 </Project>
