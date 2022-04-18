@@ -1,15 +1,12 @@
 ﻿using GasShipping.DataAgent;
+using GasShipping.FleetRoutingModel;
 using GasShipping.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 /// <summary>This will be the main class that will be running
 /// the Demo</summary>
 public static class Helper
-    {
+{
 
     /// <summary>Gets or sets the ships.</summary>
     /// <value>The ships.</value>
@@ -17,13 +14,15 @@ public static class Helper
 
     /// <summary>Gets or sets the ports.</summary>
     /// <value>The ports.</value>
-    public static List <Customers>? Ports { get; set; }
+    public static List<Customers>? Ports { get; set; }
 
     /// <summary>Gets or sets the file agent.</summary>
     /// <value>The file agent.</value>
     public static FileAgent? FileAgent { get; set; }
 
-
+    /// <summary>Gets or sets the fleet.</summary>
+    /// <value>The fleet.</value>
+    static Fleet? Fleet { get; set; }
 
     /// <summary>This is the main method that will run the whole program</summary>
     public static void Run()
@@ -31,15 +30,74 @@ public static class Helper
         //TODO: call (METHOD)  ask user for file options then populate depending on the option
         // we will use the constant files for now
 
-        FileAgent = new (Constants.SHIPS_FILE_NAME_C50, Constants.PATH);
-        var shipFactory=new ShipsFactory(FileAgent);
-        Ships= shipFactory.GetShipsFromFile();
-        //Console.WriteLine(shipFactory.SetShipsToJSONString(Ships));
-        FileAgent.FileName = Constants.CUSTOMER_FILE_NAME_C50;
-        var customerFactory=new CustomerFactory(FileAgent);
-        Ports=customerFactory.GetCustomersFromFile();
-        Console.WriteLine(customerFactory.SetCustomersToJSONString((Ports)));
+        FileAgent = new(Constants.SHIPS_FILE_NAME_C50, Constants.PATH);
+        var shipFactory = new ShipsFactory(FileAgent);
+        Ships = shipFactory.GetShipsFromFile();
 
+        FileAgent.FileName = Constants.CUSTOMER_FILE_NAME_C50;
+        var customerFactory = new CustomerFactory(FileAgent);
+        Ports = customerFactory.GetCustomersFromFile();
+
+        //get the locations and insert them into a list
+        List<Location> locations = new List<Location>();
+        if (Ships is not null)
+        {
+            // we add the Home depo location to the list of locations
+            locations.Add(Ships[0].Location);
+        }
+        foreach (var port in Ports)
+        {
+            locations.Add(port.Location);
+        }
+        var locationArray = ConvertLocationToArray(locations);//convert to location array
+
+
+        var loads = new List<int>();
+        loads.Add(0);//Home load requirements
+        loads.AddRange(Ports.Select(p => (int)p.Quantity));
+
+        var loadsArray= loads.ConvertAll(p=>Convert.ToInt64(p)).ToArray();// convert to array
+
+        //TODO: Ships capacity then do the fleet.
+       //Fleet =new Fleet(loadsArray,)
+
+       
+
+    }
+
+    /// <summary>Converts the location List&lt;Location&gt; to array int[i,2] . where i is the length of the List&lt;Location&gt;</summary>
+    /// <param name="locations">The list of locations.</param>
+    /// <returns>
+    ///   Array int[i,2] . where i is the length of the List&lt;Location&gt;
+    /// </returns>
+    static int[,] ConvertLocationToArray(List<Location> locations)
+    {
+
+        var idxCount = locations.Count;
+        int[,] locationList = new int[idxCount, 2];
+        //foreach (var location in locations)
+        //{
+        //    result.Add(new List<List<int>>(){ location.X,location.Y});
+        //}
+
+        for (int i = 0; i < idxCount; i++)
+        {
+            locationList[i, 0] = locations[i].X;
+            locationList[i, 1] = locations[i].Y;
+
+        }
+        return locationList;
+    }
+
+    /// <summary>Prints the locations array.</summary>
+    /// <param name="location">The location.</param>
+    static void PrintLocationsArray(int[,] location)
+    {
+        //var temp = ConvertLocationToArray(locations);
+        for (int i = 0; i < location.GetLength(0); i++)
+        {
+            Console.WriteLine($"({location[i, 0]},{location[i, 1]})");
+        }
     }
 
 }

@@ -1,10 +1,5 @@
 ﻿using Google.OrTools.ConstraintSolver;
 using Google.Protobuf.WellKnownTypes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GasShipping.FleetRoutingModel
 {
@@ -14,6 +9,12 @@ namespace GasShipping.FleetRoutingModel
         /// <summary>Gets or sets the solution.</summary>
         /// <value>The solution.</value>
         Assignment Solution { get; set; }
+        /// <summary>Gets or sets the manager.</summary>
+        /// <value>The manager.</value>
+        RoutingIndexManager Manager { get; set; }
+        /// <summary>Gets or sets the routing.</summary>
+        /// <value>The routing.</value>
+        RoutingModel Routing { get; set; }
         /// <summary>Euclidean distance implemented as a callback. It uses an array of
         /// positions and computes the Euclidean distance between the two
         /// positions of two different indices.</summary>
@@ -49,42 +50,37 @@ namespace GasShipping.FleetRoutingModel
             if (!isEuclidean) fleet.DistanceMatrix = ComputeEuclideanDistanceMatrix(fleet.Portlocations);
 
             // Create Routing Index Manager
-            // [START index_manager]
-            RoutingIndexManager manager =
-                new RoutingIndexManager(fleet.DistanceMatrix.GetLength(0), fleet.ShipCount, fleet.Depot);
-            // [END index_manager]
+            Manager = CreateRoutingIndexManager(fleet);
 
             // Create Routing Model.
-            // [START routing_model]
-            RoutingModel routing = new RoutingModel(manager);
-            // [END routing_model]
+            Routing = CreateRoutingModel(Manager);
 
             // Create and register a transit callback.
             // [START transit_callback]
-            int transitCallbackIndex = routing.RegisterTransitCallback((long fromIndex, long toIndex) =>
+            int transitCallbackIndex = Routing.RegisterTransitCallback((long fromIndex, long toIndex) =>
             {
                 // Convert from routing variable Index to distance matrix NodeIndex.
-                var fromNode = manager.IndexToNode(fromIndex);
-                var toNode = manager.IndexToNode(toIndex);
+                var fromNode = Manager.IndexToNode(fromIndex);
+                var toNode = Manager.IndexToNode(toIndex);
                 return fleet.DistanceMatrix[fromNode, toNode];
             });
             // [END transit_callback]
 
             // Define cost of each arc.
             // [START arc_cost]
-            routing.SetArcCostEvaluatorOfAllVehicles(transitCallbackIndex);
+            Routing.SetArcCostEvaluatorOfAllVehicles(transitCallbackIndex);
             // [END arc_cost]
 
 
             // Add Capacity constraint.
             // [START capacity_constraint]
-            int demandCallbackIndex = routing.RegisterUnaryTransitCallback((long fromIndex) =>
+            int demandCallbackIndex = Routing.RegisterUnaryTransitCallback((long fromIndex) =>
             {
                 // Convert from routing variable Index to demand NodeIndex.
-                var fromNode = manager.IndexToNode(fromIndex);
+                var fromNode = Manager.IndexToNode(fromIndex);
                 return fleet.Demands[fromNode];
             });
-            routing.AddDimensionWithVehicleCapacity(demandCallbackIndex, 0, // null capacity slack
+            Routing.AddDimensionWithVehicleCapacity(demandCallbackIndex, 0, // null capacity slack
                                                     fleet.ShipCapacities, // Ships maximum capacities
                                                     true,                   // start cumul to zero
                                                     "Capacity");
@@ -102,8 +98,70 @@ namespace GasShipping.FleetRoutingModel
 
             // Solve the problem.
             // [START solve]
-            Solution = routing.SolveWithParameters(searchParameters);
+            Solution = Routing.SolveWithParameters(searchParameters);
             // [END solve]
+        }
+
+        /// <summary>Creates the routing model.</summary>
+        /// <param name="manager">The manager.</param>
+        /// <returns>new Routing model</returns>
+        private static RoutingModel CreateRoutingModel(RoutingIndexManager manager)
+        {
+            // [START routing_model]
+            return new RoutingModel(manager);
+            // [END routing_model]
+        }
+
+        /// <summary>Creates the routing index manager.</summary>
+        /// <param name="fleet">The fleet.</param>
+        /// <returns>new RoutingIndexManager</returns>
+        private static RoutingIndexManager CreateRoutingIndexManager(Fleet fleet)
+        {
+
+            // [START index_manager]
+            return new RoutingIndexManager(fleet.DistanceMatrix.GetLength(0), fleet.ShipCount, fleet.Depot);
+            // [END index_manager]
+        }
+
+
+        /// <summary>Prints the solution.</summary>
+        /// <param name="data">The data.</param>
+        /// <param name="routing">The routing.</param>
+        /// <param name="manager">The manager.</param>
+        /// <param name="solution">The solution.</param>
+        public static void PrintSolution(in Fleet data, in RoutingModel routing, in RoutingIndexManager manager,
+                            in Assignment solution)
+        {
+            Console.WriteLine($"Objective {solution.ObjectiveValue()}:");
+
+            // Inspect solution.
+            long totalDistance = 0;
+            long totalLoad = 0;
+            for (int i = 0; i < data.ShipCount; ++i)
+            {
+                Console.WriteLine("Route for Vehicle {0}:", i + 1);
+                long routeDistance = 0;
+                //long routeLoad = 0;
+                long routeLoad = data.ShipCapacities[i];
+                var index = routing.Start(i);
+                while (routing.IsEnd(index) == false)
+                {
+                    long nodeIndex = manager.IndexToNode(index);
+                    // routeLoad += data.Demands[nodeIndex];
+                    routeLoad -= data.Demands[nodeIndex];
+                    //Console.Write("{0} Load({1}) -> ", nodeIndex, routeLoad);
+                    Console.Write("{0} {1} Load({2}) -> ", data.Demands[nodeIndex] == 0 ? "Start" : "demand(" + data.Demands[nodeIndex] + ")", nodeIndex == 0 ? "Depo" : "Customer" + nodeIndex, routeLoad);
+                    var previousIndex = index;
+                    index = solution.Value(routing.NextVar(index));
+                    routeDistance += routing.GetArcCostForVehicle(previousIndex, index, 0);
+                }
+                Console.WriteLine("{0}", manager.IndexToNode((int)index));
+                Console.WriteLine("Distance of the route: {0}m", routeDistance);
+                totalDistance += routeDistance;
+                totalLoad += routeLoad;
+            }
+            Console.WriteLine("Total distance of all routes: {0}m", totalDistance);
+            Console.WriteLine("Total load of all routes: {0}m", totalLoad);
         }
     }
 }

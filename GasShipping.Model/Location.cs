@@ -21,4 +21,11 @@ public class Location
         X = x;
         Y = y;
     }
+
+    /// <summary>Converts to string.</summary>
+    /// <returns>A string that represents the current object.</returns>
+    public override string? ToString()
+    {
+        return $"({X},{Y})";
+    }
 }

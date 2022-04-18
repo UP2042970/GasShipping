@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GasShipping.DataAgent\GasShipping.DataAgent.csproj" />
+    <ProjectReference Include="..\GasShipping.FleetRoutingModel\GasShipping.FleetRoutingModel.csproj" />
     <ProjectReference Include="..\GasShipping.Model\GasShipping.Model.csproj" />
   </ItemGroup>
 
