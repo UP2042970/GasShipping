@@ -23,20 +23,20 @@ internal class Helper
         _ships = new List<Ship>();
         fromDirctory = @"C:\Users\binma\source\repos\GasShipping\Datasets\";
         toDirctory = @"C:\Users\binma\source\repos\GasShipping\Datasets\JsonFormat\";
-        var fileagent = new FileAgent("c75.txt", fromDirctory);
+        var fileagent = new FileAgent("c100.txt", fromDirctory);
         var fileString = fileagent.ReadFile();
         var lines = fileString.Split(Environment.NewLine);
         var numberOfCustomer = 0;
         Int32.TryParse(lines[0].Split(' ')[0], out numberOfCustomer);
         CreateShips(lines[1], lines[2]);
         var shipsJSON = _shipsFactory.SetShipsToJSONString(_ships);
-        //print(shipsJSON);
+        print(shipsJSON);
         fileagent.DirectoryName = toDirctory;
         //fileagent.FileName = fileagent.FileName.Split('.')[0] + "_ships.json";
-        //fileagent.WriteFile(shipsJSON);
+       // fileagent.WriteFile(shipsJSON);
         CreateCustomers(numberOfCustomer, lines);
         var customerJSON = _customerFactory.SetCustomersToJSONString(_customers);
-        //print(customerJSON);
+        print(customerJSON);
         fileagent.FileName = fileagent.FileName.Split('.')[0] + "_customers.json";
         fileagent.WriteFile(customerJSON);
 
