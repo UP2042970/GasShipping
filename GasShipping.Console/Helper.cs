@@ -29,12 +29,13 @@ public static class Helper
     {
         //TODO: call (METHOD)  ask user for file options then populate depending on the option
         // we will use the constant files for now
+        var (custFile, shipFile) = GetFilename(2);
 
-        FileAgent = new(Constants.SHIPS_FILE_NAME_C50, Constants.PATH);
+        FileAgent = new(shipFile, Constants.PATH);
         var shipFactory = new ShipsFactory(FileAgent);
         Ships = shipFactory.GetShipsFromFile();
 
-        FileAgent.FileName = Constants.CUSTOMER_FILE_NAME_C50;
+        FileAgent.FileName = custFile;
         var customerFactory = new CustomerFactory(FileAgent);
         Ports = customerFactory.GetCustomersFromFile();
 
@@ -104,6 +105,23 @@ public static class Helper
         {
             Console.WriteLine($"({location[i, 0]},{location[i, 1]})");
         }
+    }
+
+    /// <summary>Gets the filename.</summary>
+    /// <param name="number">The number.</param>
+    /// <returns>in=1 out=c50,  in=2 out=c75, in=3 out=c100, </returns>
+    static (string,string) GetFilename(int number)
+    {
+        switch (number)
+        {
+            case 1: return (Constants.CUSTOMER_FILE_NAME_C50, Constants.SHIPS_FILE_NAME_C50);
+            case 2: return (Constants.CUSTOMER_FILE_NAME_C75, Constants.SHIPS_FILE_NAME_C75);
+            case 3: return (Constants.CUSTOMER_FILE_NAME_C100, Constants.SHIPS_FILE_NAME_C100);
+            default:
+                return (Constants.CUSTOMER_FILE_NAME_C50, Constants.SHIPS_FILE_NAME_C50);
+               // break;
+        }
+       
     }
 
 }
