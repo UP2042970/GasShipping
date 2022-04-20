@@ -45,7 +45,7 @@ namespace GasShipping.FleetRoutingModel
         /// and Google OrTools solver</summary>
         /// <param name="fleet">The fleet.</param>
         /// <param name="isEuclidean">if set to <c>true</c> [is euclidean].</param>
-        public void Setup(Fleet fleet, bool isEuclidean)
+        public void Setup(Fleet fleet, bool isEuclidean = false, int calculationTime = 1)
         {
             if (!isEuclidean) fleet.DistanceMatrix = ComputeEuclideanDistanceMatrix(fleet.Portlocations);
 
@@ -90,10 +90,9 @@ namespace GasShipping.FleetRoutingModel
             // [START parameters]
             RoutingSearchParameters searchParameters =
                 operations_research_constraint_solver.DefaultRoutingSearchParameters();
-            //searchParameters.FirstSolutionStrategy = FirstSolutionStrategy.Types.Value.PathCheapestArc;
             searchParameters.FirstSolutionStrategy = FirstSolutionStrategy.Types.Value.Christofides;
             searchParameters.LocalSearchMetaheuristic = LocalSearchMetaheuristic.Types.Value.GuidedLocalSearch;
-            searchParameters.TimeLimit = new Duration { Seconds = 1 };
+            searchParameters.TimeLimit = new Duration { Seconds = calculationTime };
             // [END parameters]
 
             // Solve the problem.
@@ -129,64 +128,82 @@ namespace GasShipping.FleetRoutingModel
         /// <param name="routing">The routing.</param>
         /// <param name="manager">The manager.</param>
         /// <param name="solution">The solution.</param>
-        public void PrintSolution(in Fleet data, in RoutingModel routing, in RoutingIndexManager manager,
-                          in Assignment solution)
+        /// <param name="descreiption"></param>
+        /// <param name="seperator"></param>
+        /// <seealso cref="CreateSolutionString" />
+        public string PrintSolution(in Fleet data, in RoutingModel routing, in RoutingIndexManager manager,
+                          in Assignment solution, string descreiption = "", string seperator = "->")
         {
             var space = "                                        ";
-            string print= CreateSolutionString(data, routing, manager, solution,"TODO","\n"+space+"L");
-            Console.WriteLine(print);
+            space += "\n" + space + "L";
+            string print = CreateSolutionString(data, routing, manager, solution, descreiption, seperator);
+            // Console.WriteLine(print);
+            return print;
 
         }
-       //TODO Comments
+
+        /// <summary>Creates the solution string.
+        /// by formating the solution and the data.</summary>
+        /// <param name="data">The data.</param>
+        /// <param name="routing">The routing.</param>
+        /// <param name="manager">The manager.</param>
+        /// <param name="solution">The solution.</param>
+        /// <param name="descreiption">The descreiption.</param>
+        /// <param name="seperator">The seperator.</param>
+        /// <returns>
+        ///   Formated string 
+        /// </returns>
         private string CreateSolutionString(in Fleet data, in RoutingModel routing, in RoutingIndexManager manager,
-                      in Assignment solution, string descreiption = "",string seperator="->")
+                      in Assignment solution, string descreiption, string seperator)
         {
-            String result = descreiption+"\n\n";
+            string result = descreiption + "\n\n";
 
             // Inspect solution.
             long totalDistance = 0;
             long totalLoad = 0;
             int totalStops = 0;
+            int totalShips = data.ShipCount;
             int overallStops = 0;
             string space = "|-";
-            
+
             for (int i = 0; i < data.ShipCount; ++i)
             {
-                result += String.Format("Route for Ship {0}:", i + 1) + "\n";
+                result += string.Format("Route for Ship {0}:", i + 1) + "\n";
                 //Console.WriteLine;
                 long routeDistance = 0;
                 totalStops = 0;
-                //long routeLoad = 0;
+                long demandSatisfied=0;
                 long routeLoad = data.ShipCapacities[i];
                 var index = routing.Start(i);
                 while (routing.IsEnd(index) == false)
                 {
-                 
+
                     long nodeIndex = manager.IndexToNode(index);
-                    // routeLoad += data.Demands[nodeIndex];
+                     demandSatisfied += data.Demands[nodeIndex];
                     routeLoad -= data.Demands[nodeIndex];
-                    //Console.Write("{0} Load({1}) -> ", nodeIndex, routeLoad);
-                    string arg0 = data.Demands[nodeIndex] == 0 ? "" : String.Format("where the demand is: {0,-3:000}", data.Demands[nodeIndex]);
-                    string arg1 = nodeIndex == 0 ? "At Home" : String.Format("Customer{1,-3:000}", space, nodeIndex);
-                    string arg2 = nodeIndex == 0 ? routeLoad + "" : String.Format("{0,-4:000}", routeLoad ) + " after offloading "+seperator;
+
+                    string arg0 = data.Demands[nodeIndex] == 0 ? "" : string.Format("where the demand is: {0,-3:000}", data.Demands[nodeIndex]);
+                    string arg1 = nodeIndex == 0 ? "At Home" : string.Format("Customer{1,-3:000}", space, nodeIndex);
+                    string arg2 = nodeIndex == 0 ? routeLoad + "" : string.Format("{0,-4:000}", routeLoad) + " after offloading " + seperator;
                     result += FormatRouteString(arg0, arg1, arg2, space);
-                   // var test = string.Format("{3}The Ship load is {2}  {1}  demand is: 021", arg0, arg1, arg2,space);
+
                     var previousIndex = index;
                     index = solution.Value(routing.NextVar(index));
                     routeDistance += routing.GetArcCostForVehicle(previousIndex, index, 0);
                     totalStops += nodeIndex == 0 ? 0 : 1;
 
                 }
-                
-              result += String.Format("Distance of the route: {0}m with total {1} stops", routeDistance,totalStops) + "\n";
+                totalShips = demandSatisfied == 0 ? totalShips-1 : totalShips;
+                result += demandSatisfied == 0 ? "" : string.Format("Distance of the route: {0}m with total {1} stops satisfying {2} of the demand", routeDistance, totalStops, demandSatisfied) + "\n";
                 overallStops += totalStops;
                 result += "\n";
                 totalDistance += routeDistance;
                 totalLoad += routeLoad;
             }
-            result += String.Format("Total distance of all routes: {0}m", totalDistance) + "\n";
-            result += String.Format("Total load of all routes: {0}", data.Demands.Sum()) + "\n";
-            result += String.Format("Total stops of all routes: {0}", overallStops) + "\n";
+            result += string.Format("Total distance of all routes: {0}m", totalDistance) + "\n";
+            result += string.Format("Total load of all routes: {0}", data.Demands.Sum()) + "\n";
+            result += string.Format("Total stops of all routes: {0}", overallStops) + "\n";
+            result += string.Format("Total Ships used for of all routes: {0} out of {1}", totalShips, data.ShipCount) + "\n";
             return result;
 
         }
@@ -204,7 +221,7 @@ namespace GasShipping.FleetRoutingModel
         {
             //string space = "|-";
 
-            return String.Format("{3} The Ship load is {2} {1} {0}", arg0, arg1, arg2, space) + "\n";
+            return string.Format("{3} The Ship load is {2} {1} {0}", arg0, arg1, arg2, space) + "\n";
         }
 
     }
