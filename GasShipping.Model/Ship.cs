@@ -29,6 +29,8 @@ namespace GasShipping.Model
         [JsonPropertyName("Current Capacity")]
         public double CurrentCapacity { get; set; }
 
+        public LinkedList<Customers>? Customers { get; set; }
+
         /// <summary>Initializes a new instance of the <see cref="Ship" /> class.
         /// Throws ArgumentNullException if param(s) are null.</summary>
         /// <param name="id">The identifier.</param>
