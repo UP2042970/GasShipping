@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="GasShipping.FleetRoutingModel.Fleet">
+    <Position X="1.75" Y="1" Width="3" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAACBAAAAAAAAAABgBAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Fleet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GasShipping.FleetRoutingModel.FleetRouting">
+    <Position X="7" Y="1" Width="5.75" />
+    <TypeIdentifier>
+      <HashCode>CAAAABAACAAIBAAAAAAAAAEgAAAABBAAAAAAAIAAAAA=</HashCode>
+      <FileName>FleetRouting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

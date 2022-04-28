@@ -224,5 +224,56 @@ namespace GasShipping.FleetRoutingModel
             return string.Format("{3} The Ship load is {2} {1} {0}", arg0, arg1, arg2, space) + "\n";
         }
 
+
+
+
+        public Dictionary<int, List<int>> GetSolution(in Fleet data, in RoutingModel routing, in RoutingIndexManager manager,
+                          in Assignment solution )
+        {
+            Dictionary<int, List<int>> routes = new Dictionary<int, List<int>>();
+
+           
+
+            // Inspect solution.
+           
+            var tempList = new List<int>();
+            for (int i = 0; i < data.ShipCount; ++i)
+            {
+               
+               
+                //Console.WriteLine;
+                long routeDistance = 0;
+                
+                long demandSatisfied = 0;
+                long routeLoad = data.ShipCapacities[i];
+                var index = routing.Start(i);
+                while (routing.IsEnd(index) == false)
+                {
+
+                    long nodeIndex = manager.IndexToNode(index);
+                    demandSatisfied += data.Demands[nodeIndex];
+                    routeLoad -= data.Demands[nodeIndex];
+
+
+                    tempList.Add((int)nodeIndex);
+                   
+                   
+
+                    var previousIndex = index;
+                    index = solution.Value(routing.NextVar(index));
+                    routeDistance += routing.GetArcCostForVehicle(previousIndex, index, 0);
+                   
+
+                }
+                routes.Add(i,tempList);
+                tempList.Clear();
+
+
+            }
+           
+            return routes;
+
+        }
+
     }
 }

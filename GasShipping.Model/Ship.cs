@@ -54,6 +54,7 @@ namespace GasShipping.Model
             Location = location ?? new Location(0, 0); //?? throw new ArgumentNullException(nameof(location));
             TotalCapacity = totalCapacity;
             CurrentCapacity = currentCapacity;
+            Customers = new LinkedList<Customers>();
         }
     }
 }

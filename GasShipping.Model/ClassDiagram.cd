@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="GasShipping.Model.Customers">
-    <Position X="3.5" Y="4.25" Width="2.5" />
+    <Position X="7.75" Y="4" Width="5.75" />
     <TypeIdentifier>
       <HashCode>AgACAAAAAAAAAAAAAAIAAAQAAAAAAAAAAAAAgAAAAAA=</HashCode>
       <FileName>Customers.cs</FileName>
@@ -11,14 +11,14 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="GasShipping.Model.Location">
-    <Position X="0.5" Y="4" Width="1.5" />
+    <Position X="1.25" Y="4.25" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
       <FileName>Location.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GasShipping.Model.Ship">
-    <Position X="2.25" Y="0.75" Width="4" />
+    <Position X="3" Y="0.5" Width="8" />
     <TypeIdentifier>
       <HashCode>QAECAAAAAAAAAAAAAAIAAAQAAAAAAAAAAAEAAAAAAAA=</HashCode>
       <FileName>Ship.cs</FileName>

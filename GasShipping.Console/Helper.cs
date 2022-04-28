@@ -7,6 +7,13 @@ using GasShipping.Model;
 /// the Demo</summary>
 public static class Helper
 {
+    /// <summary>
+    /// Gets or sets the look up.
+    /// </summary>
+    /// <value>
+    /// The look up.
+    /// </value>
+    public static MapLookUp lookUp { get; set; }
 
     /// <summary>Gets or sets the ships.</summary>
     /// <value>The ships.</value>
@@ -29,25 +36,95 @@ public static class Helper
     {
         //TODO: call (METHOD)  ask user for file options then populate depending on the option
         // we will use the constant files for now
-        Intro();
-        int option = Console.ReadLine().ReadInt();
+        //Intro();
+       // int option = Console.ReadLine().ReadInt();
         "".Println();
-        var (custFile, shipFile, desc) = GetFilename(option);
+        var (custFile, shipFile, desc) = GetFilename(1);
 
         ReadFiles(custFile, shipFile);
         int[,] locationArray;
         long[] loadsArray, ShipCpacitys;
         DataSetup(out locationArray, out loadsArray, out ShipCpacitys);
-
+        populateLookUp();
         Fleet = new Fleet(loadsArray, ShipCpacitys, Ships.Count, 0, locationArray);
         FleetRouting fleetRouting = new FleetRouting();
         fleetRouting.Setup(Fleet);
-        fleetRouting.PrintSolution(Fleet, fleetRouting.Routing, fleetRouting.Manager, fleetRouting.Solution, desc).Println();
+        // fleetRouting.PrintSolution(Fleet, fleetRouting.Routing, fleetRouting.Manager, fleetRouting.Solution, desc).Println();
+        //lookUp.ShipLookup.ToString().Println();
+        Dictionary<int, List<int>> routs=fleetRouting.GetSolution(Fleet, fleetRouting.Routing, fleetRouting.Manager, fleetRouting.Solution);
+        printLookup(routs);
 
 
 
     }
 
+    private static void populateLookUp()
+    {
+        lookUp = new MapLookUp();
+        var shipCount = Ships.Count -1;
+        for (int i = 0; i <= shipCount; i++)
+        {
+            var temp = i + 1;
+            lookUp.AddShip(temp, Ships[i]);
+        }
+        var CustCount = Ports.Count -1;
+        for (int i = 0; i <= CustCount; i++)
+        {
+            var temp = i + 1;
+            lookUp.AddCustomer(temp, Ports[i]);
+        }
+    }
+    static void printLookup(Dictionary<int, List<int>> routs)
+    {
+        Ship temp;
+        LinkedList<Customers> list = new LinkedList<Customers>();
+        var enumerator = routs.Keys.GetEnumerator();
+       
+
+       //do
+       // {
+
+       //     var val = enumerator.Current;
+       //     temp = lookUp.ShipLookup[val + 1];
+       //     var templist=routs[val].ToList<int>();
+       //     for (int i = 0; i < templist.Count; i++)
+       //     {
+       //         var idx = templist[i] + 1;
+       //         temp.Customers.AddLast(lookUp.CustomerLookup[idx]);
+       //     }
+            
+            
+            //routs.Keys.GetEnumerator().MoveNext();
+
+        //} while (enumerator.MoveNext()) ;
+
+            //foreach (var keys in routs)
+            //{
+            //    temp = lookUp.ShipLookup[keys.Key+ 1]; 
+            //    //var rr =keys.Value.;
+
+            //    //keys.Value.ToString().Print();
+
+            //       // temp.Customers.AddLast(lookUp.CustomerLookup[i]);
+
+
+            //    Ships.FirstOrDefault(x => x.Id == temp.Id).Customers=temp.Customers;
+            //}
+
+            foreach (var ship in Ships)
+        {
+            ship.Name.Print();
+            "->".Println();
+            if (ship.Customers  is not null) {
+                foreach (var port in ship.Customers)
+                {
+                    port.Name.Print(); " -> ".Print();
+                }
+
+            }
+            
+        }
+    }
     private static void DataSetup(out int[,] locationArray, out long[] loadsArray, out long[] ShipCpacitys)
     {
 
@@ -136,7 +213,7 @@ public static class Helper
         }
        
     }
-    public static void Intro()
+    private static void Intro()
     {
         var str = "please choose one of the following Routing scenarios:\n";
         for (int i = 1; i < 4; i++)
