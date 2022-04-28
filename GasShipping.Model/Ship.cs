@@ -7,24 +7,35 @@ using System.Threading.Tasks;
 
 namespace GasShipping.Model
 {
+    /// <summary>Ship Data Model</summary>
     public class Ship
     {
+        /// <summary>Gets the identifier.</summary>
+        /// <value>The identifier.</value>
         [JsonPropertyName("ID")]
         public int Id { get; init; }
+        /// <summary>Gets the name.</summary>
+        /// <value>The name.</value>
         public string Name { get; init; }
+        /// <summary>Gets or sets the location.</summary>
+        /// <value>The location.</value>
         public Location Location { get; set; }
+        /// <summary>Gets the total capacity.</summary>
+        /// <value>The total capacity.</value>
         [JsonPropertyName("Total Capacity")]
         public double TotalCapacity { get; init; }
+        /// <summary>Gets or sets the current capacity.</summary>
+        /// <value>The current capacity.</value>
         [JsonPropertyName("Current Capacity")]
         public double CurrentCapacity { get; set; }
-        /// <summary>
-        /// Constructor for Ship. Throws ArgumentNullException if param(s) are null 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="name"></param>
-        /// <param name="location"></param>
-        /// <param name="totalCapacity"></param>
-        /// <param name="currentCapacity"></param>
+
+        /// <summary>Initializes a new instance of the <see cref="Ship" /> class.
+        /// Throws ArgumentNullException if param(s) are null.</summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="location">The location.</param>
+        /// <param name="totalCapacity">The total capacity.</param>
+        /// <param name="currentCapacity">The current capacity.</param>
         public Ship(int id, string name, Location location, double totalCapacity, double currentCapacity = 0)
         {
             //if (string.IsNullOrEmpty(name))
