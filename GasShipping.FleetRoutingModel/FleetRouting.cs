@@ -157,7 +157,7 @@ namespace GasShipping.FleetRoutingModel
                       in Assignment solution, string descreiption, string seperator)
         {
             string result = descreiption + "\n\n";
-
+            _=data ?? throw new ArgumentNullException(nameof(data));
             // Inspect solution.
             long totalDistance = 0;
             long totalLoad = 0;

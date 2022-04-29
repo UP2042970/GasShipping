@@ -44,6 +44,7 @@ namespace GasShipping.DataAgent
         {
             string fullFilePath = DirectoryName + FileName;
             string output = "";
+            
             using(StreamReader reader = new StreamReader(fullFilePath,Encoding.UTF8))
             {
                 output = reader.ReadToEnd();
