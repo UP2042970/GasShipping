@@ -142,22 +142,21 @@ namespace GasShipping.FleetRoutingModel
 
         }
 
-        /// <summary>Creates the solution string.
-        /// by formating the solution and the data.</summary>
+
+        /// <summary>Creates the solution string.by formating the solution and the data.</summary>
         /// <param name="data">The data.</param>
         /// <param name="routing">The routing.</param>
         /// <param name="manager">The manager.</param>
         /// <param name="solution">The solution.</param>
         /// <param name="descreiption">The descreiption.</param>
         /// <param name="seperator">The seperator.</param>
-        /// <returns>
-        ///   Formated string 
-        /// </returns>
+        /// <returns>Formatted String</returns>
+        /// <exception cref="System.ArgumentNullException">data - The fleet cannot be empty or null</exception>
         private string CreateSolutionString(in Fleet data, in RoutingModel routing, in RoutingIndexManager manager,
                       in Assignment solution, string descreiption, string seperator)
         {
             string result = descreiption + "\n\n";
-
+            _ = data ?? throw new ArgumentNullException(nameof(data),"The fleet cannot be empty or null");
             // Inspect solution.
             long totalDistance = 0;
             long totalLoad = 0;
