@@ -1,7 +1,7 @@
 ﻿using GasShipping.DataAgent;
 using GasShipping.FleetRoutingModel;
 using GasShipping.Model;
-
+using System.Configuration;
 
 /// <summary>This will be the main class that will be running
 /// the Demo</summary>
@@ -38,10 +38,11 @@ public static class Helper
         int[,] locationArray;
         long[] loadsArray, ShipCpacitys;
         DataSetup(out locationArray, out loadsArray, out ShipCpacitys);
-
+        var exeTimeinSec = ConfigurationManager.AppSettings.Get("ExcutionTimeInSec").ToString().ReadInt();
+        exeTimeinSec= exeTimeinSec==0 ? 1 : exeTimeinSec;
         Fleet = new Fleet(loadsArray, ShipCpacitys, Ships.Count, 0, locationArray);
         FleetRouting fleetRouting = new FleetRouting();
-        fleetRouting.Setup(Fleet);
+        fleetRouting.Setup(Fleet,calculationTime:exeTimeinSec);
         fleetRouting.PrintSolution(Fleet, fleetRouting.Routing, fleetRouting.Manager, fleetRouting.Solution, desc).Println();
 
 

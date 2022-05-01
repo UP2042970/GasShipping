@@ -41,13 +41,13 @@ namespace GasShipping.Test
         {
             TestShipFactory.Ships.AddRange(new List<Ship> { ship1, ship2, ship3, ship4 });
         }
-        [Test]
-        public void Test001_getCurrectDirctory()
-        {
-            var path = Constants.PATH;
-            Assert.IsNotNull(path);
+        //[Test]
+        //public void Test001_getCurrectDirctory()
+        //{
+        //    var path = Constants.PATH;
+        //    Assert.IsNotNull(path);
 
-        }
+        //}
         [Test]
         public void Test002_WriteStringToFile()
         {
