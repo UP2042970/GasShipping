@@ -12,7 +12,8 @@ namespace GasShipping.Test
         Ship ship2;
         Ship ship3;
         Ship ship4;
-
+        string DEMO_FILE_NAME = "TEST.JSON";
+        string DEMO_FILE_PATH = @"C:\Users\binma\source\repos\GasShipping\GasShipping.DataAgent\Files\";
         ShipsFactory TestShipFactory;
         string myString = @"[
   {
@@ -33,7 +34,7 @@ namespace GasShipping.Test
              ship2 = new Ship(2, "ship 2", new Location(2, 2), 20, 10);
              ship3 = new Ship(3, "ship 3", new Location(3, 3), 30, 20);
              ship4 = new Ship(4, "ship 4", new Location(4, 4), 40, 30);
-            TestShipFactory = new ShipsFactory();
+            TestShipFactory = new ShipsFactory(new FileAgent(DEMO_FILE_NAME, DEMO_FILE_PATH));
        
         }
         public void CreateShipList()
