@@ -9,6 +9,8 @@ namespace GasShipping.Test
 {
     public class Test_DataAgent_CustomerFactory
     {
+        string DEMO_FILE_NAME = "TEST.JSON";
+        string DEMO_FILE_PATH = @"C:\Users\binma\source\repos\GasShipping\GasShipping.DataAgent\Files\";
         Customers customer1;
         Customers customer2;
         Customers customer3;
@@ -34,7 +36,7 @@ namespace GasShipping.Test
             customer2 = new Customers(2, "customer2", new Location(20, 20), 0, 20.5);
             customer3 = new Customers(3, "customer3", new Location(30, 30), 0, 30.5);
             customer4 = new Customers(4, "customer4", new Location(40, 40), 0, 40.5);
-            TestCustomerFactory = new CustomerFactory();
+            TestCustomerFactory = new CustomerFactory(new FileAgent(DEMO_FILE_NAME, DEMO_FILE_PATH));
         }
 
         public void CreateCustomerList()
