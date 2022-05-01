@@ -41,7 +41,7 @@ public static class Helper
 
         Fleet = new Fleet(loadsArray, ShipCpacitys, Ships.Count, 0, locationArray);
         FleetRouting fleetRouting = new FleetRouting();
-        fleetRouting.Setup(Fleet);
+        fleetRouting.Setup(Fleet,calculationTime:60);
         fleetRouting.PrintSolution(Fleet, fleetRouting.Routing, fleetRouting.Manager, fleetRouting.Solution, desc).Println();
 
 

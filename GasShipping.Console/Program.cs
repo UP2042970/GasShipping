@@ -13,13 +13,14 @@ using GasShipping.Model;
 
 //FileAgent fileAgent=new FileAgent("file",null);
 //fileAgent.ReadFile();
-FleetRouting fleetRouting = new();
+//FleetRouting fleetRouting = new();
 //var test=fleetRouting.ComputeEuclideanDistanceMatrix(new int[,] { { int.MaxValue, int.MaxValue }, { int.MaxValue, int.MaxValue } });
 
 //foreach (var item in test)
 //{
 //    item.ToString().Println();
 //}
-fleetRouting.PrintSolution(null,null,null,null);
+//fleetRouting.PrintSolution(null,null,null,null);
+Helper.Run();
 
 
