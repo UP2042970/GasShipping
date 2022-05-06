@@ -1,0 +1,354 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/Users/binma/source/repos/GasShipping/GassShipping.Doc",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GasShipping.DataAgent.Constants.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GasShipping.DataAgent.Constants.html",
+          "hash": "pzKYqnIFSVbPVk/DL2eCo1MfjpeGYQApq7TUZbjme4s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GasShipping.DataAgent.CustomerFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GasShipping.DataAgent.CustomerFactory.html",
+          "hash": "FW2GkmrT2ZWLYFz0ZtLxvQmY7E8n302+06ZYHzQLATg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GasShipping.DataAgent.FileAgent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GasShipping.DataAgent.FileAgent.html",
+          "hash": "HVDGboSsOAoxOUaLqXwRYTK+kQLr/cQ+VbMC8fpInVI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GasShipping.DataAgent.ShipsFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GasShipping.DataAgent.ShipsFactory.html",
+          "hash": "gFn1nFxeUkmykQgdWCxpOApCm5AXEkmh8ibVsac9ndA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GasShipping.DataAgent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GasShipping.DataAgent.html",
+          "hash": "3alKq2mtggm1Awzz1yNMBSx2VG4zBXdzEZHQhXMgaYU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GasShipping.FleetRoutingModel.Fleet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GasShipping.FleetRoutingModel.Fleet.html",
+          "hash": "4SjZD8SFHmzY/dbFyyCCiahdqMdeInvRhTSETXu4JcM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GasShipping.FleetRoutingModel.FleetRouting.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GasShipping.FleetRoutingModel.FleetRouting.html",
+          "hash": "ZeSIts7+XaH4iyL6lUOW6TVos9EtSOQyS2P4vk11viI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GasShipping.FleetRoutingModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GasShipping.FleetRoutingModel.html",
+          "hash": "3Lzh83oxXKFs+F7JCJBNJh+KwCluxQAH4kt2kAcY3q0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GasShipping.Model.Customers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GasShipping.Model.Customers.html",
+          "hash": "M/fCxV6VnFHZ40Bcx1WYRNVMFrlvmGteWFQ1QrNUYL0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GasShipping.Model.Location.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GasShipping.Model.Location.html",
+          "hash": "rC38hY4v6rHQTgxWWKOLxINLJiSZrTDYMVjMYpwsahc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GasShipping.Model.Ship.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GasShipping.Model.Ship.html",
+          "hash": "jPrt2Bx6Vi7tVjY88Bu3StNWcqC2jfrrmx2iR60/kw4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GasShipping.Model.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GasShipping.Model.html",
+          "hash": "vV8J9pBd/sLh25v9NSBi84pxDyOJdaGiDV8jcqaCFAY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GasShipping.Test.Test_DataAgent_CustomerFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GasShipping.Test.Test_DataAgent_CustomerFactory.html",
+          "hash": "b4yb/XBpE8P1Riwk1OoAYD1HTXW5qtbDAEROK/BA/Z8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GasShipping.Test.Test_DataAgent_FileAgent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GasShipping.Test.Test_DataAgent_FileAgent.html",
+          "hash": "E9eYpA/GYPmmXowxw+/tG1kb46fQjybspEVJJE1W/wc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GasShipping.Test.Test_DataAgent_ShipsFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GasShipping.Test.Test_DataAgent_ShipsFactory.html",
+          "hash": "+lRTjKQMZY30t+NApE9qdqit+/1NCn72z17McNfJ0xk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GasShipping.Test.Test_FleetRoutingModel_FleetRouting.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GasShipping.Test.Test_FleetRoutingModel_FleetRouting.html",
+          "hash": "uNNmxIqFLnjiqOCqgT8k7k4PNqAq4kC1eOg8qZFRPPM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GasShipping.Test.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GasShipping.Test.html",
+          "hash": "f7ajXf+wNnEj5BJxSaXXHFnHbFLyOnQZJuSqqU44YZM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GassShipping.Doc.Class1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GassShipping.Doc.Class1.html",
+          "hash": "Ow7sFz86CNgYQHtj5+MrvaqhRdzxrmM62uooJe3Djbg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GassShipping.Doc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GassShipping.Doc.html",
+          "hash": "xhmy7lwn5/Zv8HTLideqkpvlZ0QTmD3wTbMHnoIuGQI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "S6HH25ziEUKWJk9c1SDkf4tv9pt+s1Em+CanR3D4XJQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "kWA7BVKLqixW1lDo8dHZJcJWIzglG1GlWlUTme1qZW0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "aOy2sep6UZV26oOkupcIBXuDgHQsCVz7R3i+I6vFl6Y="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "BlPxk5mtl2kgfcZUgkEguqiSAR/EUyUTT4EdebwkQvs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "J2Ucrckdx4dg4IZOx6kwfAACTTn8pqVwhGnYicz3XjE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "WSuRrYiGwKKMbtdG9z8W9fXmLoCyTnGg9AxbPKLXm2Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 3
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 19,
+          "skipped_file_count": 2
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
